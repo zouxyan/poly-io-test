@@ -26,10 +26,6 @@ import (
 )
 
 const (
-	ONT_CHAIN_ID = 3
-	ETH_CHAIN_ID = 2
-	BTC_CHAIN_ID = 1
-
 	CM_BTCX  = "btcx"
 	CM_ETHX  = "ethx"
 	CM_ERC20 = "erc20x"
@@ -40,6 +36,11 @@ const (
 
 //Config object used by ontology-instance
 type TestConfig struct {
+	BtcChainID    uint64
+	EthChainID    uint64
+	OntChainID    uint64
+	NeoChainID    uint64
+
 	BtcRestAddr                  string
 	BtcRestUser                  string
 	BtcRestPwd                   string
@@ -80,6 +81,11 @@ type TestConfig struct {
 	CMCrossChainId uint64
 	CMEpoch        int64
 
+	// neo chain conf
+	NeoUrl   string
+	NeoWif   string
+	NeoEpoch uint32
+
 	// relayer chain
 	RCWallet             string
 	RCWalletPwd          string
@@ -103,6 +109,13 @@ type TestConfig struct {
 	EthLockProxy        string
 	EthOngx             string
 	EthOntx             string
+	EthOntd             string
+	EthUSDT             string
+	EthWBTC             string
+	EthDai              string
+	EthUSDC             string
+	EthNeo              string
+	EthRenBTC           string
 	BtceContractAddress string
 
 	// ont contracts: auto set after deploy
@@ -110,18 +123,41 @@ type TestConfig struct {
 	OntOep4             string
 	OntLockProxy        string
 	OntEth              string
+	OntUSDT             string
+	OntWBTC             string
+	OntDai              string
+	OntUSDC             string
+	OntNeo              string
+	OntONTD             string
+	OntRenBTC           string
 	BtcoContractAddress string
+
+	// neo
+	NeoCCMC      string
+	NeoLockProxy string
+	CNeo         string
+	NeoOnt       string
+	NeoOntd      string
+	NeoEth       string
 
 	// cosmos
 	CMLockProxy string
 
 	// transfer amount
-	BtcValLimit   uint64
-	OntValLimit   uint64
-	OngValLimit   uint64
-	EthValLimit   uint64
-	Oep4ValLimit  uint64
-	Erc20ValLimit uint64
+	BtcValLimit    uint64
+	OntValLimit    uint64
+	OntdValLimit   uint64
+	OngValLimit    uint64
+	EthValLimit    uint64
+	Oep4ValLimit   uint64
+	Erc20ValLimit  uint64
+	USDTValLimit   uint64
+	NeoValLimit    uint64
+	WBTCValLimit   uint64
+	USDCValLimit   uint64
+	RenBTCValLimit uint64
+
+	OntdValFloor uint64
 }
 
 //Default config instance
