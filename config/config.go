@@ -19,10 +19,11 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/polynetwork/poly-io-test/log"
 	"io/ioutil"
 	"os"
+
+	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/polynetwork/poly-io-test/log"
 )
 
 const (
@@ -36,10 +37,11 @@ const (
 
 //Config object used by ontology-instance
 type TestConfig struct {
-	BtcChainID    uint64
-	EthChainID    uint64
-	OntChainID    uint64
-	NeoChainID    uint64
+	BtcChainID uint64
+	EthChainID uint64
+	OntChainID uint64
+	NeoChainID uint64
+	BSCChainID uint64
 
 	BtcRestAddr                  string
 	BtcRestUser                  string
@@ -61,6 +63,10 @@ type TestConfig struct {
 	// eth urls
 	EthURL        string
 	ETHPrivateKey string
+
+	// bsc urls
+	BSCURL        string
+	BSCPrivateKey string
 
 	// ontology
 	OntJsonRpcAddress   string
