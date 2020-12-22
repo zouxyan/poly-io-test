@@ -2293,7 +2293,7 @@ func SendEthBnbCrossBsc(ctx *testframework.TestFrameworkContext, status *testfra
 	contractAddr := ethcommon.HexToAddress(config.DefConfig.EthLockProxy)
 	callMsg := ethereum.CallMsg{
 		From: ctx.EthInvoker.EthTestSigner.Address, To: &contractAddr, Gas: 0, GasPrice: gasPrice,
-		Value: big.NewInt(int64(amount)), Data: txData,
+		Value: big.NewInt(0), Data: txData,
 	}
 	gasLimit, err := ctx.EthInvoker.ETHUtil.GetEthClient().EstimateGas(context.Background(), callMsg)
 	if err != nil {
