@@ -2229,7 +2229,7 @@ func SendBnbCrossEth(ctx *testframework.TestFrameworkContext, status *testframew
 	if err != nil {
 		return fmt.Errorf("SendBnbCrossEth, abi.JSON error:" + err.Error())
 	}
-	rawFrom := ctx.BscInvoker.EthTestSigner.Address.Bytes()
+	rawFrom := ctx.EthInvoker.EthTestSigner.Address.Bytes()
 	assetaddress := ethcommon.HexToAddress("0000000000000000000000000000000000000000")
 	txData, err := contractabi.Pack("lock", assetaddress, uint64(config.DefConfig.EthChainID), rawFrom[:],
 		big.NewInt(int64(amount)))
@@ -2282,7 +2282,7 @@ func SendEthBnbCrossBsc(ctx *testframework.TestFrameworkContext, status *testfra
 	if err != nil {
 		return fmt.Errorf("SendEthBnbCrossBsc, abi.JSON error:" + err.Error())
 	}
-	rawFrom := ctx.EthInvoker.EthTestSigner.Address.Bytes()
+	rawFrom := ctx.BscInvoker.EthTestSigner.Address.Bytes()
 	assetaddress := ethcommon.HexToAddress(config.DefConfig.EthBnb)
 	txData, err := contractabi.Pack("lock", assetaddress, uint64(config.DefConfig.BscChainID), rawFrom[:],
 		big.NewInt(int64(amount)))
