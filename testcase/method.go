@@ -2291,6 +2291,26 @@ func SendEthBnbCrossBsc(ctx *testframework.TestFrameworkContext, status *testfra
 	}
 
 	contractAddr := ethcommon.HexToAddress(config.DefConfig.EthLockProxy)
+	token, err := eth.NewStandardToken(assetaddress, ctx.EthInvoker.ETHUtil.GetEthClient())
+	if err != nil {
+		return fmt.Errorf("SendEthBnbCrossBsc, failed to NewStandardToken: %v", err)
+	}
+	val, err := token.Allowance(nil, ctx.EthInvoker.EthTestSigner.Address, contractAddr)
+	if err != nil {
+		return fmt.Errorf("SendEthBnbCrossBsc, failed to get allowance: %v", err)
+	}
+	if val.Uint64() < amount {
+		nonce := ctx.EthInvoker.NM.GetAddressNonce(ctx.EthInvoker.EthTestSigner.Address)
+		auth := MakeEthAuth(ctx.EthInvoker.EthTestSigner, nonce, gasPrice.Uint64(), uint64(eth.DefaultGasLimit))
+		if err != nil {
+			return fmt.Errorf("SendEthBnbCrossBsc, failed to get eth auth: %v", err)
+		}
+		tx, err := token.Approve(auth, contractAddr, big.NewInt(math.MaxInt64))
+		if err != nil {
+			return fmt.Errorf("SendEthBnbCrossBsc, failed to approve: %v", err)
+		}
+		WaitTransactionConfirm(ctx.EthInvoker.ETHUtil.GetEthClient(), tx.Hash())
+	}
 	callMsg := ethereum.CallMsg{
 		From: ctx.EthInvoker.EthTestSigner.Address, To: &contractAddr, Gas: 0, GasPrice: gasPrice,
 		Value: big.NewInt(0), Data: txData,
