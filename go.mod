@@ -30,8 +30,11 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
 )
 
-replace github.com/polynetwork/eth-contracts => github.com/zouxyan/eth-contracts v0.0.0-20201215112041-6532ab4e12f4
+replace (
+	github.com/polynetwork/eth-contracts v0.0.0-20200903021827-c9212e419943 => ./../eth-contracts
+	github.com/polynetwork/poly v0.0.0-20201216061550-50185057319d => ./../poly
+	github.com/ontio/ontology-go-sdk v1.11.9-0.20200819065441-7c4b7a8330f6 => ./../../ontio/ontology-go-sdk
+	github.com/polynetwork/poly-go-sdk v0.0.0-20200817120957-365691ad3493 => ./../../zhiqiangxu/poly-go-sdk
+	github.com/joeqian10/neo-gogogo v0.0.0-20200811090937-d8aab8600241 => ../../joeqian10/neo-gogogo
+)
 
-replace github.com/polynetwork/poly => github.com/zhiqiangxu/poly v0.0.0-20201216075543-df86073d2575
-
-replace github.com/polynetwork/poly-go-sdk => github.com/zhiqiangxu/poly-go-sdk v0.0.0-20201215024222-5d728b68e651
