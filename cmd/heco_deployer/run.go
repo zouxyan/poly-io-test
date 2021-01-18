@@ -38,10 +38,10 @@ func init() {
 	flag.StringVar(&fnEth, "func", "deploy", "choose function to run: deploy or setup")
 	flag.StringVar(&ethConfFile, "conf", "./config.json", "config file path")
 	flag.IntVar(&eccmRedeploy, "redeploy_eccm", 1, "redeploy eccd, eccm and eccmp or not")
-	flag.Parse()
 }
 
 func main() {
+	flag.Parse()
 	err := config.DefConfig.Init(ethConfFile)
 	if err != nil {
 		panic(err)

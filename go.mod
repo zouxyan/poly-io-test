@@ -18,8 +18,8 @@ require (
 	github.com/polynetwork/btc-vendor-tools v0.0.0-20200813091748-3b19a5fd7666
 	github.com/polynetwork/cosmos-poly-module v0.0.0-20200810030259-95d586518759
 	github.com/polynetwork/eth-contracts v0.0.0-20200903021827-c9212e419943
-	github.com/polynetwork/poly v0.0.0-20201216061550-50185057319d
-	github.com/polynetwork/poly-go-sdk v0.0.0-20200817120957-365691ad3493
+	github.com/polynetwork/poly v1.3.0
+	github.com/polynetwork/poly-go-sdk v0.0.0-20210114120411-3dcba035134f
 	github.com/stretchr/testify v1.6.1
 	github.com/tendermint/tendermint v0.33.7
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
@@ -31,10 +31,8 @@ require (
 )
 
 replace (
-	github.com/polynetwork/eth-contracts v0.0.0-20200903021827-c9212e419943 => ./../eth-contracts
-	github.com/polynetwork/poly v0.0.0-20201216061550-50185057319d => ./../poly
-	github.com/ontio/ontology-go-sdk v1.11.9-0.20200819065441-7c4b7a8330f6 => ./../../ontio/ontology-go-sdk
-	github.com/polynetwork/poly-go-sdk v0.0.0-20200817120957-365691ad3493 => ./../../zhiqiangxu/poly-go-sdk
 	github.com/joeqian10/neo-gogogo v0.0.0-20200811090937-d8aab8600241 => ../../joeqian10/neo-gogogo
+	github.com/ontio/ontology-go-sdk v1.11.9-0.20200819065441-7c4b7a8330f6 => ./../../ontio/ontology-go-sdk
+	github.com/polynetwork/eth-contracts v0.0.0-20200903021827-c9212e419943 => ./../eth-contracts
+	github.com/polynetwork/poly-go-sdk v0.0.0-20210114120411-3dcba035134f => ../poly-go-sdk
 )
-

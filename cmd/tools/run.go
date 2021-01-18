@@ -1620,7 +1620,23 @@ func GetSideChain(poly *poly_go_sdk.PolySdk, id uint64) {
 	if err != nil {
 		panic(err)
 	}
-	log.Infof("side chain %d, name: %s, addr: %s", id, sideChain.Name, sideChain.Address.ToBase58())
+	switch sideChain.ChainId {
+	case config.DefConfig.HecoChainID:
+		type HecoExtra struct {
+			ChainID *big.Int // chainId of heco chain, testnet: 256, mainnet: 128
+			Period  uint64
+		}
+		hecoExtra := new(HecoExtra)
+		if err := json.Unmarshal(sideChain.ExtraInfo, hecoExtra); err != nil {
+			log.Errorf("heco unmarshal ExtraInfo err: %v", err)
+			return
+		}
+		log.Infof("side chain: {chainId: %d, name: %s, router: %d, waitBlock: %d, eccd: %x, addr: %s, extra.ChainID: %s, extra.Period: %d}", sideChain.ChainId, sideChain.Name, sideChain.Router, sideChain.BlocksToWait, sideChain.CCMCAddress, sideChain.Address.ToBase58(),
+			hecoExtra.ChainID.String(), hecoExtra.Period)
+	default:
+		log.Infof("side chain %d, name: %s, addr: %s", id, sideChain.Name, sideChain.Address.ToBase58())
+	}
+
 }
 
 func UpdatePolyConfig(poly *poly_go_sdk.PolySdk, blockMsgDelay, hashMsgDelay, peerHandshakeTimeout,
